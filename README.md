@@ -12,7 +12,7 @@ recommendation, and any active circuit-breaker flags.
 - **HTTP API · MCP server · Coinbase AgentKit · Rig (Rust)**
 - **$0.003 per query in USDC on Base via x402 — no API keys**
 
-🔗 [bitfence.ai](https://bitfence.ai) · 📄 [Whitepaper](./WHITEPAPER.pdf) · 𝕏 [@bitfence_ai](https://x.com/bitfence_ai)
+🔗 [bitfence.ai](https://bitfence.ai) · 📄 [Whitepaper](./WHITEPAPER.pdf) · 𝕏 [@bitfenceai](https://x.com/bitfenceai)
 
 ---
 
