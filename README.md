@@ -57,7 +57,7 @@ same `RiskAssessment` structure.
 - **Coinbase AgentKit** — `bitfenceActionProvider` for AgentKit-based agents
 - **Rig (Rust)** — typed in-process tool binding for Rust-native agents
 
-For integration details, contact `hello@bitfence.ai`.
+For integration details, contact `info@bitfence.ai`.
 
 ## Pricing and access
 
