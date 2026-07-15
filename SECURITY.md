@@ -24,7 +24,6 @@ with you on a disclosure timeline appropriate to the severity.
 
 - The bitfence scoring service and its public API endpoints
 - The bitfence MCP server
-- The bitfence Coinbase AgentKit action provider
 - The bitfence Rig toolkit bindings
 
 **Out of scope:**

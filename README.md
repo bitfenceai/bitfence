@@ -9,7 +9,7 @@ a composite score, per-category breakdown, confidence value, action
 recommendation, and any active circuit-breaker flags.
 
 - **Live on Base and Solana**
-- **HTTP API · MCP server · Coinbase AgentKit · Rig (Rust)**
+- **HTTP API · MCP server · Rig (Rust) — Coinbase AgentKit coming soon**
 - **$0.003 per query in USDC on Base via x402 — no API keys**
 
 🔗 [bitfence.ai](https://bitfence.ai) · 📄 [Whitepaper](./WHITEPAPER.pdf) · 𝕏 [@bitfenceai](https://x.com/bitfenceai)
@@ -54,7 +54,7 @@ same `RiskAssessment` structure.
 
 - **HTTP/JSON API** — for any caller that speaks HTTP
 - **MCP server** — for tool-calling LLM agents (Claude Desktop, MCP-enabled IDEs)
-- **Coinbase AgentKit** — `bitfenceActionProvider` for AgentKit-based agents
+- **Coinbase AgentKit** — ActionProvider coming soon
 - **Rig (Rust)** — typed in-process tool binding for Rust-native agents
 
 For integration details, contact `info@bitfence.ai`.
