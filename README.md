@@ -3,12 +3,12 @@
 **The risk layer agents can't skip.**
 
 bitfence is a pre-transaction token risk oracle for autonomous AI agents
-operating on Base and Solana. Before an agent swaps, transfers, or interacts
-with a token, bitfence returns a structured risk assessment in under a second:
-a composite score, per-category breakdown, confidence value, action
-recommendation, and any active circuit-breaker flags.
+operating on Solana, Base, Ethereum, Arbitrum, and BSC. Before an agent
+swaps, transfers, or interacts with a token, bitfence returns a structured
+risk assessment in under a second: a composite score, confidence value,
+action recommendation, and any active circuit-breaker flags.
 
-- **Live on Base and Solana**
+- **Live on Solana, Base, Ethereum, Arbitrum, and BSC** — HyperEVM built, gated behind its release check
 - **HTTP API · MCP server · Rig (Rust) — Coinbase AgentKit coming soon**
 - **$0.003 per query in USDC on Base via x402 — no API keys**
 
@@ -30,20 +30,24 @@ complementary to existing wallet-grade tools, not competitive with them.
 
 ## What it scores
 
-Risk is decomposed into four live categories and assembled into a 0–100
-composite with maturity-aware scoring and structured circuit-breaker
-overrides.
+Risk is decomposed into six categories — each a distinct mechanism by which
+a holder's position is destroyed — and assembled into a 0–100 composite with
+maturity-aware scoring and structured circuit-breaker overrides.
 
-| Category              | What it covers                                                                 |
-| --------------------- | ------------------------------------------------------------------------------ |
-| **Contract authority**| Ownership, mint and freeze authority, upgradeable proxies, dangerous opcodes   |
-| **Liquidity**         | LP lock and burn status, LP-to-FDV ratio, pool age                             |
-| **Holder distribution** | Top-holder share, deployer share, Gini coefficient, holder count             |
-| **Trading**           | Honeypot detection, sell and buy taxes                                         |
+| Category                | What it covers                                                                |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| **Exit Integrity**      | Honeypot behaviour (measured by bitfence's own transaction simulation on EVM chains), sell/transfer taxes and their modifiability, freeze authority, transfer blocking |
+| **Supply Integrity**    | Mint authority, hidden ownership, owner-editable balances, permanent delegates, upgradeable proxies, selfdestruct, metadata mutability |
+| **Liquidity Integrity** | LP lock and burn status, unlock schedule, pool depth, deployer-held LP, pool age |
+| **Holder & Insider Risk** | Top-holder share, deployer share, holder count, sniper/insider/bundler cohorts, holder wallet ages |
+| **Provenance**          | Deployer track record, observed prior rugs, vendor scam verdicts, launchpad lifecycle, verification registries |
+| **Market Integrity**    | Wash-trade ratios, old-wallet flow share, price/volume divergence             |
 
-Two further categories — cross-chain deployer reputation and ML behavioural —
-are reserved injection points for future work. The reported confidence value
-reflects only the live categories.
+Circuit breakers override the composite: measured threats (honeypot,
+confiscatory sell tax, selfdestruct) block even trusted tokens; heuristic
+flags floor the score for any token outside the curated trusted-token
+registry. The reported confidence value reflects only the data sources
+actually consulted, with cross-source disagreements excluded.
 
 The full methodology is in the [whitepaper](./WHITEPAPER.pdf).
 

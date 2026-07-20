@@ -32,7 +32,7 @@ curl https://api.bitfence.ai/
 ```json
 {
   "name": "bitfence",
-  "version": "0.6.1",
+  "version": "0.7.6",
   "status": "operational"
 }
 ```
@@ -54,10 +54,12 @@ curl https://api.bitfence.ai/health
 ```json
 {
   "status": "ok",
-  "version": "0.6.1",
-  "chains": ["solana", "base"]
+  "version": "0.7.6",
+  "chains": ["solana", "base", "ethereum", "arbitrum", "bsc"]
 }
 ```
+
+`chains` lists the chains currently enabled on this deployment. A supported-but-disabled chain (currently `hyperevm`, gated behind its release check) is absent from the list and returns `400 unsupported_chain` when queried.
 
 ---
 
@@ -69,8 +71,8 @@ Returns a full risk assessment for a token on the specified chain.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `chain` | string | Blockchain network: `solana` or `base` |
-| `token_address` | string | Token mint address (Solana) or contract address (Base) |
+| `chain` | string | Blockchain network: `solana`, `base`, `ethereum`, `arbitrum`, or `bsc` (`hyperevm` once enabled) |
+| `token_address` | string | Token mint address (Solana) or `0x` contract address (EVM chains) |
 
 ### Request
 
@@ -100,7 +102,7 @@ curl https://api.bitfence.ai/v1/risk/base/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA0
   "cache_source": null,
   "analysis_ms": 187,
   "response_ms": 192,
-  "version": "0.6.1"
+  "version": "0.7.6"
 }
 ```
 
@@ -134,7 +136,7 @@ Returns a risk assessment with additional position-aware context, including esti
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `chain` | string | Yes | Blockchain network: `solana` or `base` |
+| `chain` | string | Yes | Blockchain network: `solana`, `base`, `ethereum`, `arbitrum`, or `bsc` |
 | `token` | string | Yes | Token address |
 | `position_size_usd` | float | Yes | Intended position size in USD |
 | `agent_portfolio_usd` | float | Yes | Total portfolio value in USD |
@@ -171,7 +173,7 @@ The response includes all fields from the standard risk assessment, plus a `cont
   "cache_source": null,
   "analysis_ms": 210,
   "response_ms": 215,
-  "version": "0.6.1",
+  "version": "0.7.6",
   "context": {
     "pool_liquidity_usd": 2400000.0,
     "estimated_slippage_pct": 0.12,
@@ -207,9 +209,11 @@ All errors return a JSON body with `error` and `message` fields.
 ```json
 {
   "error": "unsupported_chain",
-  "message": "Chain 'ethereum' is not supported. Supported: [\"solana\", \"base\"]"
+  "message": "unsupported chain 'tron'. Supported: [\"solana\", \"base\", \"ethereum\", \"arbitrum\", \"bsc\", \"hyperevm\"]"
 }
 ```
+
+A chain that is supported by the binary but disabled on the deployment (kill switch, e.g. `hyperevm` today) also returns `400 unsupported_chain`.
 
 ### Invalid address (400)
 
@@ -244,7 +248,7 @@ Error-code summary:
 
 | HTTP status | `error` | Cause |
 |-------------|---------|-------|
-| 400 | `unsupported_chain` | Chain is not `solana` or `base` |
+| 400 | `unsupported_chain` | Chain is not one of the supported identifiers, or is disabled on this deployment |
 | 400 | `invalid_address` | Address fails chain-specific format validation |
 | 400 | `invalid_json` / `invalid_input` | Malformed or out-of-range contextual request body |
 | 503 | `chain_unavailable` | Chain supported but adapter unconfigured or upstream unreachable |
