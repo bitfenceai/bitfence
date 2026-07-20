@@ -28,9 +28,9 @@ with you on a disclosure timeline appropriate to the severity.
 
 **Out of scope:**
 
-- Vulnerabilities in upstream data providers (Helius, Alchemy, DEXScreener,
-  RugCheck, honeypot.is, GoldRush) — please report those to the respective
-  providers
+- Vulnerabilities in upstream data providers (blockchain RPC endpoints,
+  market-data APIs, and third-party risk-signal sources bitfence consumes) —
+  please report those to the respective providers
 - Third-party integrations not maintained by bitfence
 - Social engineering, physical security, or attacks requiring privileged
   access to production infrastructure
