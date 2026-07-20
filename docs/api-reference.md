@@ -55,11 +55,11 @@ curl https://api.bitfence.ai/health
 {
   "status": "ok",
   "version": "0.7.6",
-  "chains": ["solana", "base", "ethereum", "arbitrum", "bsc"]
+  "chains": ["solana", "base", "ethereum", "arbitrum", "bsc", "hyperevm"]
 }
 ```
 
-`chains` lists the chains currently enabled on this deployment. A supported-but-disabled chain (currently `hyperevm`, gated behind its release check) is absent from the list and returns `400 unsupported_chain` when queried.
+`chains` lists the chains currently enabled on this deployment. A supported-but-disabled chain (ops kill switch) is absent from the list and returns `400 unsupported_chain` when queried.
 
 ---
 
@@ -71,7 +71,7 @@ Returns a full risk assessment for a token on the specified chain.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `chain` | string | Blockchain network: `solana`, `base`, `ethereum`, `arbitrum`, or `bsc` (`hyperevm` once enabled) |
+| `chain` | string | Blockchain network: `solana`, `base`, `ethereum`, `arbitrum`, `bsc`, or `hyperevm` |
 | `token_address` | string | Token mint address (Solana) or `0x` contract address (EVM chains) |
 
 ### Request
@@ -213,7 +213,7 @@ All errors return a JSON body with `error` and `message` fields.
 }
 ```
 
-A chain that is supported by the binary but disabled on the deployment (kill switch, e.g. `hyperevm` today) also returns `400 unsupported_chain`.
+A chain that is supported by the binary but disabled on the deployment (ops kill switch) also returns `400 unsupported_chain`.
 
 ### Invalid address (400)
 

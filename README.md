@@ -3,12 +3,13 @@
 **The risk layer agents can't skip.**
 
 bitfence is a pre-transaction token risk oracle for autonomous AI agents
-operating on Solana, Base, Ethereum, Arbitrum, and BSC. Before an agent
+operating on Solana, Base, Ethereum, Arbitrum, BSC, and HyperEVM. Before an
+agent
 swaps, transfers, or interacts with a token, bitfence returns a structured
 risk assessment in under a second: a composite score, confidence value,
 action recommendation, and any active circuit-breaker flags.
 
-- **Live on Solana, Base, Ethereum, Arbitrum, and BSC** — HyperEVM built, gated behind its release check
+- **Live on Solana, Base, Ethereum, Arbitrum, BSC, and HyperEVM**
 - **HTTP API · MCP server · Rig (Rust) — Coinbase AgentKit coming soon**
 - **$0.003 per query in USDC on Base via x402 — no API keys**
 
