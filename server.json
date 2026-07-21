@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bitfenceai/bitfence",
+  "title": "bitfence Risk Oracle",
+  "description": "Pre-transaction token risk checks for autonomous agents on six chains. Read-only; paid via x402.",
+  "repository": {
+    "url": "https://github.com/bitfenceai/bitfence",
+    "source": "github"
+  },
+  "websiteUrl": "https://www.bitfence.ai",
+  "version": "0.7.7",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.bitfence.ai/mcp"
+    }
+  ]
+}
